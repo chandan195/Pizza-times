@@ -1,19 +1,41 @@
-
 /* eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart} from "../../store/CardSlice";
+import { addToCart } from "../../store/CardSlice";
+
+import toast, { Toaster } from "react-hot-toast";
+
 const Card = ({ product }) => {
-  // console.log("hello Page", product);
+  console.log("card is ready");
+  const handleToast = (name) => toast.success(`Added ${name} `, { icon: "👏" });
   const dispatch = useDispatch();
 
   const handleAdd = (product) => {
-    dispatch(addToCart({id:product.id,Image:product.ItemImg,name:product.ItemName,price:product.ItemPrice, qty:1}))
-    // console.log(product);
+    dispatch(
+      addToCart({
+        id: product.id,
+        Image: product.ItemImg,
+        name: product.ItemName,
+        price: product.ItemPrice,
+        qty: 1,
+      })
+    ),
+      handleToast(product.ItemName);
   };
   return (
     <>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          success: {
+            style: {
+              border: "3px solid red",
+            },
+          },
+        }}
+      />
       <div className="bg-slate-400 rounded-lg" key={product.id}>
         <Link to={`/product-details/${product.id}`}>
           <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:h-52">
