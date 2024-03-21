@@ -1,20 +1,31 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart,incrementQty ,decrementQty } from "../../store/CardSlice";
+import {
+  removeFromCart,
+  incrementQty,
+  decrementQty,
+} from "../../store/CardSlice";
 import cardImage from "../../assets/images/empty-card.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import toast, { Toaster } from "react-hot-toast";
 
 const CardProduct = () => {
+  const handleToast = (name) =>
+    toast.success(`Remove  Product: ${name}  `, { icon: "👋" });
+
   const products = useSelector((state) => state.card.cart);
 
-  const grandTotal =products.reduce((price ,item) => price + item.price*item.qty, 0);
+  const grandTotal = products.reduce(
+    (price, item) => price + item.price * item.qty,
+    0
+  );
   // const products =Object.keys(product)
   console.log("card product :", products);
   const dispatch = useDispatch();
   const handleRemove = (productId) => {
     dispatch(removeFromCart(productId));
-    // console.log("remove from cart", productId);
+    handleToast(productId);
   };
   const handleIncrement = (productId) => {
     dispatch(incrementQty(productId));
@@ -24,10 +35,19 @@ const CardProduct = () => {
     dispatch(decrementQty(productId));
   };
 
- 
-
   return (
     <div className="bg-white pt-4">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          success: {
+            style: {
+              border: "3px solid red",
+            },
+          },
+        }}
+      />
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ">
         {products.length !== 0 ? (
           <>
@@ -59,7 +79,9 @@ const CardProduct = () => {
                             <h3>
                               <a href={product.href}>{product.name}</a>
                             </h3>
-                            <p className="ml-4">{product.price*product.qty}</p>
+                            <p className="ml-4">
+                              {product.price * product.qty}
+                            </p>
                           </div>
                         </div>
                         <div className="flex flex-1 items-end justify-between text-sm gap-4">
@@ -67,7 +89,11 @@ const CardProduct = () => {
                             <button
                               type="button"
                               className="font-medium  hover:text-indigo-500  "
-                              onClick={() =>product.qty > 1 ? handleDecrement(product.id):(product.qty)}
+                              onClick={() =>
+                                product.qty > 1
+                                  ? handleDecrement(product.id)
+                                  : product.qty
+                              }
                             >
                               <FontAwesomeIcon icon={faMinus} />
                             </button>
@@ -76,7 +102,7 @@ const CardProduct = () => {
                             <button
                               type="button"
                               className="font-medium  hover:text-indigo-500"
-                              onClick={()=>handleIncrement(product.id)}
+                              onClick={() => handleIncrement(product.id)}
                             >
                               <FontAwesomeIcon icon={faPlus} />
                             </button>
@@ -88,7 +114,7 @@ const CardProduct = () => {
                               onClick={() => handleRemove(product.id)}
                             >
                               <FontAwesomeIcon icon={faTrash} />
-                              {/* Remove */}
+                             
                             </button>
                           </div>
                         </div>
@@ -100,12 +126,12 @@ const CardProduct = () => {
 
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6 sticky \">
                 <div className="flex justify-between text-base font-medium text-gray-900">
-                  <p>Subtotal</p>
+                  <p>Subtotal :</p>
                   <p>{`${grandTotal}`}</p>
                 </div>
-                <p className="mt-0.5 text-sm text-gray-500">
+                {/* <p className="mt-0.5 text-sm text-gray-500">
                   Shipping and taxes calculated at checkout.
-                </p>
+                </p> */}
                 <div className="mt-6">
                   <a
                     href="#"
@@ -115,10 +141,13 @@ const CardProduct = () => {
                   </a>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                  <Link to="/menu">
                   <p>
-                    or Continue Shopping
+                  or{" "}
+                    <span className="text-yellow-400"> Continue Shopping</span>
                     <span aria-hidden="true"> &rarr;</span>
                   </p>
+                  </Link>
                 </div>
               </div>
             </div>

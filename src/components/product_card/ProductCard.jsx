@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import { allProductsData } from "../../data/AllProductsData";
 import "../../routes/blog/Blog.css";
- import Card from "../product_card/Card"
+import Card from "../product_card/Card";
 import PaginationComponent from "../pagination/PaginationComponent";
 
 const ProductCard = () => {
-
-
   const [searchData, setSearchData] = useState([]);
   // searchData is use to store the initial data = allProductsData
   const [data, setData] = useState([]);
@@ -36,7 +34,6 @@ const ProductCard = () => {
 
   const menuItems = [...new Set(allProductsData.map((val) => val.Category))]; // *collection for unique category
 
- 
   //  handle more then one category selection
   const handleFilterButtonClick = (selectedCategory) => {
     if (selectedFilters.includes(selectedCategory)) {
@@ -119,7 +116,7 @@ const ProductCard = () => {
           </button>
         ))}
       </div>
-       
+
       <div className=" w-full buttons-container">
         <PaginationComponent
           totalPosts={TotalPost}
@@ -130,39 +127,12 @@ const ProductCard = () => {
           TotalPost={TotalPost}
         />
       </div>
-      {/* <Card  currentPost={currentPost}/> */}
 
       {currentPost.length !== 0 ? (
         <>
           {currentPost &&
             Object.values(currentPost).map((product) => (
-              // <div
-              //   key={product.id}
-              //   className="group relative bg-slate-400 rounded-lg"
-              // >
-              //   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-              //     <img
-              //       loading="lazy"
-              //       src={product.ItemImg}
-              //       alt={product.ItemName}
-              //       className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-              //     />
-              //   </div>
-              //   <div className="mt-4 flex justify-between">
-              //     <div>
-              //       <h3 className="text-sm text-gray-700">
-              //         <Link to={`/product-details/${product.id}`}>
-              //           <span aria-hidden="true" className="absolute inset-0" />
-              //           {product.ItemName}
-              //         </Link>
-              //       </h3>
-              //     </div>
-              //     <p className="text-sm font-medium text-gray-900">
-              //       {product.ItemPrice}
-              //     </p>
-              //   </div>
-              // </div>
-              <Card  product={product}  key={product.id}/>
+              <Card product={product} key={product.id} />
             ))}
         </>
       ) : (
