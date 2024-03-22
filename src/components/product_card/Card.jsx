@@ -7,7 +7,7 @@ import { addToCart } from "../../store/CardSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 const Card = ({ product }) => {
-  console.log("card is ready");
+  console.log(product);
   const handleToast = (name) => toast.success(`Added ${name} `, { icon: "👏" });
   const dispatch = useDispatch();
 
@@ -53,16 +53,17 @@ const Card = ({ product }) => {
             {product.ItemPrice}
           </p>
         </div>
+        <div className="text-white text-center  ">
+          <p>{`${product.ItemIngredients.slice(0, 40)}...`}</p>
+        </div>
 
-        <div className="text-center">
+        <div className=" text-md font-bold  text-white text-center ">
           <button
-            className="text-white text-center  rounded-lg w-58  bg-blue-500 m-2 p-2 "
+            className=" bg-center
+                     rounded-lg w-3/5  bg-green-600  p-2 m-3 hover:bg-green-500/75"
             onClick={() => handleAdd(product)}
-            // onClick={() =>{
-            //   dispatch(addToCart({id:product.id,Image:product.ItemImg,name:product.ItemName,price:product.ItemPrice, qnt:1}))
-            // }}
           >
-            Add to card
+            Add To Card
           </button>
         </div>
       </div>
