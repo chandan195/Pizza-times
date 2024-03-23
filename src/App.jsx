@@ -34,12 +34,12 @@ function App() {
           <Route path="/about" element={<About />} />
 
           <Route path="/blog" element={<Blog />} />
-          <Route path="/all_card_products"   element={<CardProduct/>}/>
+          <Route path="/CardProduct"   element={<CardProduct/>}/>
           <Route path="/contact" element={<Content />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
-          <Route path="/all_card_products"   element={<CardProduct/>}/>
+          
         </Routes>
         {/* {location.pathname === "*" && <Footer />} */}
 
