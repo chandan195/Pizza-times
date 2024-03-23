@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+// import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/CardSlice";
@@ -7,7 +7,7 @@ import { addToCart } from "../../store/CardSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 const Card = ({ product }) => {
-  console.log(product);
+  // console.log(product);
   const handleToast = (name) => toast.success(`Added ${name} `, { icon: "👏" });
   const dispatch = useDispatch();
 
@@ -23,6 +23,9 @@ const Card = ({ product }) => {
     ),
       handleToast(product.ItemName);
   };
+  // useEffect(() => {
+  //   localStorage.setItem('card-item', JSON.stringify(handleAdd(product)));
+  // }, [handleAdd(product)]);
   return (
     <>
       <Toaster
@@ -54,7 +57,14 @@ const Card = ({ product }) => {
           </p>
         </div>
         <div className="text-white text-center  ">
-          <p>{`${product.ItemIngredients.slice(0, 40)}...`}</p>
+          {
+            // console.log(product),
+            product.Category != "Drinks" ? (
+              <p>{`${product.ItemIngredients.slice(0, 40)}...`}</p>
+            ) : (
+              ""
+            )
+          }
         </div>
 
         <div className=" text-md font-bold  text-white text-center ">
