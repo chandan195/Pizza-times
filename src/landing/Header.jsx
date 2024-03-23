@@ -69,7 +69,7 @@ const Header = () => {
           {/* </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end"> */}
           <NavLink
-            to="/all_card_products"
+            to="/CardProduct"
             className="text-sm font-semibold leading-6 text-white"
           >
             <CardIcon />

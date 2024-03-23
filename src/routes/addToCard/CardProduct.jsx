@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
@@ -34,6 +35,9 @@ const CardProduct = () => {
   const handleDecrement = (productId) => {
     dispatch(decrementQty(productId));
   };
+  useEffect(() => {
+    document.title = "Pizza Time || CardProduct";
+  });
 
   return (
     <div className="bg-white pt-4">

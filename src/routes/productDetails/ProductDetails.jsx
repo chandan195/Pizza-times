@@ -1,15 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { allProductsData } from "../../data/AllProductsData";
-import {  useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/CardSlice";
 import toast, { Toaster } from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const ProductDetails = () => {
-  
-
   const handleToast = (name) => toast.success(`Added ${name} `, { icon: "👏" });
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const ProductDetails = () => {
 
   return (
     <div className="flex   bg-black/75 w-screen h-screen  bg-center ">
-        <Toaster
+      <Toaster
         position="top-center"
         reverseOrder={false}
         toastOptions={{
@@ -45,15 +45,20 @@ const ProductDetails = () => {
           },
         }}
       />
+
+      <button className="lg:pr-72 pt-0 ">
+        <Link to="/menu">
+          <FontAwesomeIcon icon={faArrowAltCircleLeft}  className="pl-4 "/>
+        </Link>
+      </button>
       {allProductsData &&
         Object.values(allProductsData).map((product) => {
           if (product.id == param.id) {
             return (
               <div
-                className="pt-28 bg-black/40 lg:bg-center lg:pt-64  pb-24 w-full h-full bg-center  flex  "
+                className="pt-28  lg:bg-center lg:pt-64  pb-24 w-full h-full bg-center  flex  "
                 key={product.id}
               >
-                <button className="lg:pr-72">.....</button>
                 {/* <div key={product.id} className=" bg-slate-400 rounded-lg"> */}
                 <div className="h-52 w-96 ">
                   <img
@@ -86,8 +91,11 @@ const ProductDetails = () => {
                       className="   text-white 
                      rounded-lg  bg-green-500   hover:bg-green-500/75"
                     >
-                      <button className="    text-white 
-                     rounded-lg  text-md font-bold text-center w-full h-1/3 p-3 bg-center" onClick={() => handleAdd(product)}>
+                      <button
+                        className="    text-white 
+                     rounded-lg  text-md font-bold text-center w-full h-1/3 p-3 bg-center"
+                        onClick={() => handleAdd(product)}
+                      >
                         Add To Card
                       </button>
                     </div>
