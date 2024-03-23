@@ -15,7 +15,13 @@ const CardProduct = () => {
   const handleToast = (name) =>
     toast.success(`Remove  Product: ${name}  `, { icon: "👋" });
 
+  // const products = useSelector((state) => state.card.cart);
   const products = useSelector((state) => state.card.cart);
+  // useEffect(() => {
+  //   localStorage.setItem('card-item', JSON.stringify(products));
+  // }, [products]);
+
+
 
   const grandTotal = products.reduce(
     (price, item) => price + item.price * item.qty,
