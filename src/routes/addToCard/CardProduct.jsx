@@ -5,6 +5,7 @@ import {
   removeFromCart,
   incrementQty,
   decrementQty,
+  clearCard,
 } from "../../store/CardSlice";
 import cardImage from "../../assets/images/empty-card.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,14 +22,12 @@ const CardProduct = () => {
   //   localStorage.setItem('card-item', JSON.stringify(products));
   // }, [products]);
 
-
-
   const grandTotal = products.reduce(
     (price, item) => price + item.price * item.qty,
     0
   );
   // const products =Object.keys(product)
-  console.log("card product :", products);
+  // console.log("card product :", products);
   const dispatch = useDispatch();
   const handleRemove = (productId) => {
     dispatch(removeFromCart(productId));
@@ -40,6 +39,10 @@ const CardProduct = () => {
   };
   const handleDecrement = (productId) => {
     dispatch(decrementQty(productId));
+  };
+  const handleClearCard = () => {
+    // console.log("you clicked on clear button");
+    dispatch(clearCard());
   };
   useEffect(() => {
     document.title = "Pizza Time || CardProduct";
@@ -124,7 +127,6 @@ const CardProduct = () => {
                               onClick={() => handleRemove(product.id)}
                             >
                               <FontAwesomeIcon icon={faTrash} />
-                             
                             </button>
                           </div>
                         </div>
@@ -132,6 +134,15 @@ const CardProduct = () => {
                     </li>
                   ))}
                 </ul>
+                <div >
+                  <button
+                    className="font-medium  hover:text-white  hover:bg-red-500 bg-green-500 p-2 m-2 rounded-lg"
+                    onClick={() => handleClearCard()}
+
+                  >
+                    Clear Cart
+                  </button>
+                </div>
               </div>
 
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6 sticky \">
@@ -143,20 +154,23 @@ const CardProduct = () => {
                   Shipping and taxes calculated at checkout.
                 </p> */}
                 <div className="mt-6">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Checkout
-                  </a>
+                  </Link>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <Link to="/menu">
-                  <p>
-                  or{" "}
-                    <span className="text-yellow-400"> Continue Shopping</span>
-                    <span aria-hidden="true"> &rarr;</span>
-                  </p>
+                    <p>
+                      or{" "}
+                      <span className="text-yellow-400">
+                        {" "}
+                        Continue Shopping
+                      </span>
+                      <span aria-hidden="true"> &rarr;</span>
+                    </p>
                   </Link>
                 </div>
               </div>
