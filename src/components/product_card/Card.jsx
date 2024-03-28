@@ -23,9 +23,7 @@ const Card = ({ product }) => {
     ),
       handleToast(product.ItemName);
   };
-  // useEffect(() => {
-  //   localStorage.setItem('card-item', JSON.stringify(handleAdd(product)));
-  // }, [handleAdd(product)]);
+ 
   return (
     <>
       <Toaster
@@ -39,7 +37,7 @@ const Card = ({ product }) => {
           },
         }}
       />
-      <div className="bg-slate-400 rounded-lg" key={product.id}>
+      <div className="bg-slate-400 rounded-lg m-3 lg:m-1" key={product.id}>
         <Link to={`/product-details/${product.id}`}>
           <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 lg:h-52">
             <img
@@ -60,7 +58,11 @@ const Card = ({ product }) => {
           {
             // console.log(product),
             product.Category != "Drinks" ? (
-              <p>{`${product.ItemIngredients.slice(0, 40)}...`}</p>
+              product.ItemIngredients.length > 40 ? (
+                <p>{`${product.ItemIngredients.slice(0, 40)}...`}</p>
+              ) : (
+                <p>{product.ItemIngredients}</p>
+              )
             ) : (
               ""
             )

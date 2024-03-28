@@ -59,7 +59,7 @@ const ProductDetails = () => {
                 className="pt-28  lg:bg-center lg:pt-64  pb-24 w-full h-full bg-center  flex  "
                 key={product.id}
               >
-                {/* <div key={product.id} className=" bg-slate-400 rounded-lg"> */}
+             
                 <div className="h-52 w-96 ">
                   <img
                     loading="lazy"
@@ -102,7 +102,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              // </div>
+             
             );
           }
         })}
