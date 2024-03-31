@@ -7,14 +7,6 @@
   }
 }
 
-/* @keyframes slideInLeft {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-} */
 
 
 
@@ -60,6 +52,16 @@
     left: 50%;
     font-weight: bold;
     transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+  }
+
+  .login-text {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    font-weight: bold;
+   
     text-align: center;
     color: white;
   }
