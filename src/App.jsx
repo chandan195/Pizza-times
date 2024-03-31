@@ -3,8 +3,7 @@ import React, { Suspense } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 import Landing from "./landing/Landing";
-// import Header from "./landing/Header";
-// import Footer from "./components/footer/Footer";
+import LoginPage from "./routes/loginPage/LoginPage";
 import About from "./routes/about/About";
 import Blog from "./routes/blog/Blog";
 import Content from "./routes/content/Content";
@@ -39,11 +38,9 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
-          
+          <Route path ="/login" element={<LoginPage />} />
         </Routes>
-        {/* {location.pathname === "*" && <Footer />} */}
-
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
+      
         <Footer />
       </Suspense>
     </BrowserRouter>

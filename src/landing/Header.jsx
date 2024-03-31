@@ -14,7 +14,7 @@ const navigation = [
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className=" inset-x-0 top-0 z-50 fixed"> 
+    <header className=" inset-x-0 top-0 z-50 fixed">
       <nav
         className="flex items-center justify-between p-6 lg:px-8 "
         aria-label="Global"
@@ -41,7 +41,10 @@ const Header = () => {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Bars3Icon className="h-6 w-6 hover:text-orange-500" aria-hidden="true" />
+            <Bars3Icon
+              className="h-6 w-6 hover:text-orange-500"
+              aria-hidden="true"
+            />
           </button>
         </div>
         <div className="hidden md:flex md:gap-x-10">
@@ -53,7 +56,7 @@ const Header = () => {
                 isActive
                   ? "text-sm font-bold leading-6  text-orange-500"
                   : "text-sm font-semibold leading-6 text-white"
-              }   
+              }
             >
               {item.name}
             </NavLink>
@@ -61,8 +64,12 @@ const Header = () => {
         </div>
         <div className="hidden md:flex md:flex-1 md:justify-end">
           <NavLink
-            to="#"
-            className="text-sm font-semibold leading-6 text-white"
+            to="/login"
+            className={({ isActive }) =>
+              isActive
+                ? "text-sm font-bold leading-6  text-orange-500"
+                : "text-sm font-semibold leading-6 text-white"
+            }
           >
             Log in
           </NavLink>
@@ -101,7 +108,10 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6 px-13 hover:text-orange-500 " aria-hidden="true" />
+              <XMarkIcon
+                className="h-6 w-6 px-13 hover:text-orange-500 "
+                aria-hidden="true"
+              />
             </button>
           </div>
           <div className="mt-6 flow-root">
